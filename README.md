@@ -1,201 +1,191 @@
-# PDF 阅读器
+# PDF Reader
 
-基于 Fyne + go-fitz 开发的现代化 PDF 阅读器，支持多标签页。
+A modern PDF reader built with Fyne + go-fitz, featuring multi-tab support.
 
-## 功能特性
+## Features
 
-### 核心功能
-- ✅ 打开和阅读 PDF 文件
-- ✅ **多标签页支持** - 同时打开多个 PDF 文件，Tab 切换 ⭐ **v1.1 新增**
-- ✅ 页面导航（上一页/下一页/首页/末页/页码跳转）
-- ✅ 缩放功能（50%-300%：放大/缩小/重置）
-- ✅ 键盘快捷键支持
-- ✅ 跨平台（Windows/Linux/macOS）
+### Core Features
+- ✅ Open and read PDF files
+- ✅ **Multi-tab support** - Open multiple PDF files simultaneously, switch between tabs ⭐ **v1.1 New**
+- ✅ Page navigation (Previous/Next/First/Last/Jump to page)
+- ✅ Zoom functionality (50%-300%: Zoom in/Zoom out/Reset)
+- ✅ Keyboard shortcuts support
+- ✅ Cross-platform (Windows/Linux/macOS)
 
-### 多标签页功能 (v1.1) ⭐
-- ✅ **同时打开多个 PDF** - 每个文件独立标签页
-- ✅ **智能标签管理** - 空标签页自动复用，避免多余标签 ⭐ **v1.1.1 优化**
-- ✅ **标签页切换** - 点击标签或快捷键切换
-- ✅ **独立状态管理** - 每个标签独立页码和缩放
-- ✅ **标签页管理** - 新建、关闭标签页
-- ✅ **文件名显示** - 标签页标题显示文件名
+### Multi-tab Features (v1.1) ⭐
+- ✅ **Open multiple PDFs simultaneously** - Each file in independent tab
+- ✅ **Smart tab management** - Empty tabs automatically reused, avoid redundant tabs ⭐ **v1.1.1 Optimized**
+- ✅ **Tab switching** - Click tabs or use shortcuts to switch
+- ✅ **Independent state management** - Each tab has independent page number and zoom level
+- ✅ **Tab management** - Create and close tabs
+- ✅ **Filename display** - Tab title shows filename
 
-### 界面增强 (v1.0)
-- ✅ **标准菜单栏**
-  - 文件菜单：打开、新建标签页、关闭标签页、退出
-  - 查看菜单：导航和缩放选项
-  - 帮助菜单：快捷键说明、关于信息
-- ✅ **图标化工具栏** - 美观的图标按钮替代文字
-- ✅ **鼠标滚轮翻页** - 向上/向下滚动翻页
-- ✅ **双击打开文件** - 空白区域双击调出文件选择对话框
-- ✅ **增强状态栏** - 显示文件名、页码、缩放比例、文件大小
-- ✅ **精美程序图标** - 现代简约的 PDF 文档图标
+### Interface Enhancements (v1.0)
+- ✅ **Standard menu bar**
+  - File menu: Open, New Tab, Close Tab, Exit
+  - View menu: Navigation and zoom options
+  - Help menu: Keyboard shortcuts, About information
+- ✅ **Icon-based toolbar** - Beautiful icon buttons instead of text
+- ✅ **Mouse wheel page flipping** - Scroll up/down to flip pages
+- ✅ **Double-click to open file** - Double-click blank area to open file selection dialog
+- ✅ **Enhanced status bar** - Displays filename, page number, zoom ratio, file size
+- ✅ **Beautiful program icon** - Modern minimalist PDF document icon
 
-## Windows 编译
+## Windows Build
 
-### 前置要求
+### Prerequisites
 
-1. 安装 Go 1.19 或更高版本
-2. 安装 GCC 编译器（推荐使用 TDM-GCC 或 MinGW-w64）
-   - 下载 TDM-GCC: https://jmeubank.github.io/tdm-gcc/
-   - 或下载 MinGW-w64: https://www.mingw-w64.org/
+1. Install Go 1.19 or higher
+2. Install GCC compiler (TDM-GCC or MinGW-w64 recommended)
+   - Download TDM-GCC: https://jmeubank.github.io/tdm-gcc/
+   - Or download MinGW-w64: https://www.mingw-w64.org/
 
-### 编译步骤
+### Build Steps
 
 ```bash
-# 1. 进入项目根目录
+# 1. Navigate to project root directory
 cd /path/to/pdfviewer
-# 2. 下载依赖
+# 2. Download dependencies
 go mod download
 
-# 3. 编译（在项目根目录执行）
+# 3. Build (execute in project root directory)
 go build -o pdfviewer.exe ./pdfviewer
 
-# 或者使用 PowerShell
+# Or using PowerShell
 go build -o bin\pdfviewer.exe .\pdfviewer
 ```
 
-### 构建优化版本（减小体积）
+### Build Optimized Version (Reduce Size)
 
 ```bash
 go build -ldflags="-s -w" -o pdfviewer.exe ./pdfviewer
 ```
 
-## 使用方法
+## Usage
 
-### 启动应用
+### Launch Application
 
 ```bash
-# 方式 1: 直接运行（会显示文件选择对话框或双击空白区域）
+# Method 1: Direct run (will show file selection dialog or double-click blank area)
 pdfviewer.exe
 
-# 方式 2: 指定 PDF 文件路径
+# Method 2: Specify PDF file path
 pdfviewer.exe document.pdf
 ```
 
-### 界面操作
+### Interface Operations
 
-#### 多标签页 (v1.1 新增) ⭐
-- **打开多个文件** - 菜单→文件→打开，每次打开创建新标签页
-- **新建标签页** - 菜单→文件→新建标签页，创建空标签
-- **切换标签页** - 点击标签页标题切换
-- **关闭标签页** - 菜单→文件→关闭标签页，关闭当前标签
-- **独立操作** - 每个标签页独立翻页和缩放
+#### Multi-tab (v1.1 New) ⭐
+- **Open multiple files** - Menu → File → Open, each open creates new tab
+- **Create new tab** - Menu → File → New Tab, creates empty tab
+- **Switch tabs** - Click tab title to switch
+- **Close tab** - Menu → File → Close Tab, closes current tab
+- **Independent operations** - Each tab has independent page navigation and zoom
 
-#### 菜单栏
-- **文件菜单**
-  - 打开... - 选择 PDF 文件（创建新标签页）
-  - 新建标签页 - 创建空标签页
-  - 另存为... - 保存当前文档副本到新位置
-  - 关闭标签页 - 关闭当前标签页
-  - 退出 - 退出程序
+#### Menu Bar
+- **File Menu**
+  - Open... - Select PDF file (creates new tab)
+  - New Tab - Create empty tab
+  - Save As... - Save current document copy to new location
+  - Close Tab - Close current tab
+  - Exit - Exit program
 
-- **查看菜单**
-  - 首页/上一页/下一页/末页 - 页面导航（操作当前标签页）
-  - 放大/缩小/实际大小 - 缩放控制（操作当前标签页）
+- **View Menu**
+  - First/Previous/Next/Last Page - Page navigation (operates on current tab)
+  - Zoom In/Zoom Out/Actual Size - Zoom control (operates on current tab)
 
-- **帮助菜单**
-  - 快捷键 - 查看所有快捷键
-  - 关于 - 查看版本和许可信息
+- **Help Menu**
+  - Shortcuts - View all keyboard shortcuts
+  - About - View version and license information
 
-#### 工具栏（图标化）
-- 📂 打开按钮 - 选择要打开的 PDF 文件（创建新标签页）
-- 💾 另存为按钮 - 保存当前文档副本到新位置
-- ❌ 关闭标签按钮 - 关闭当前标签页（v1.2.2 新增）
-- ⏮️ 首页 - 跳转到第一页（当前标签）
-- ◀️ 上一页 - 翻到上一页（当前标签）
-- ▶️ 下一页 - 翻到下一页（当前标签）
-- ⏭️ 末页 - 跳转到最后一页（当前标签）
-- 🔍➖ 缩小 - 减小缩放比例（当前标签）
-- 100% - 重置为实际大小（当前标签）
-- 🔍➕ 放大 - 增大缩放比例（当前标签）
-- 页码输入框 - 输入页码后按 Enter 跳转（当前标签）
+#### Toolbar (Icon-based)
+- 📂 Open button - Select PDF file to open (creates new tab)
+- 💾 Save As button - Save current document copy to new location
+- ❌ Close Tab button - Close current tab (v1.2.2 New)
+- ⏮️ First Page - Jump to first page (current tab)
+- ◀️ Previous - Go to previous page (current tab)
+- ▶️ Next - Go to next page (current tab)
+- ⏭️ Last Page - Jump to last page (current tab)
+- 🔍➖ Zoom Out - Decrease zoom ratio (current tab)
+- 100% - Reset to actual size (current tab)
+- 🔍➕ Zoom In - Increase zoom ratio (current tab)
+- Page number input - Enter page number and press Enter to jump (current tab)
 
-#### 鼠标操作
-- **滚轮翻页** - 向上滚动翻到上一页，向下滚动翻到下一页（当前标签）
-- **双击空白** - 未打开文档时，双击空白区域打开文件选择对话框
+#### Mouse Operations
+- **Wheel page flipping** - Scroll up for previous page, scroll down for next page (current tab)
+- **Double-click blank area** - When no document is open, double-click blank area to open file selection dialog
 
-#### 状态栏
-显示当前激活标签页的详细文档信息：
+#### Status Bar
+Displays detailed document information for currently active tab:
 ```
-document.pdf  |  第 5 / 120 页  |  缩放: 125%  |  大小: 3.2 MB
-```
-
-### 键盘快捷键
-
-- `左箭头` / `PageUp`: 上一页
-- `右箭头` / `PageDown` / `空格`: 下一页
-- `Home`: 跳转到首页
-- `End`: 跳转到末页
-- `Ctrl+W`: 关闭当前标签页（v1.2.2 新增）
-
-### 界面操作
-
-- **打开按钮**: 选择要打开的 PDF 文件
-- **导航按钮**: 首页、上一页、下一页、末页
-- **页码输入框**: 输入页码后按 Enter 跳转
-- **缩放按钮**: `-` 缩小、`100%` 重置、`+` 放大
-
-## 项目结构
-
-```
-cmd/pdfviewer/
-├── main.go              # 程序入口
-├── ui.go                # 用户界面（菜单、工具栏、事件处理）
-├── controller.go        # 控制器逻辑（页面管理、缩放控制）
-├── pdf_engine.go        # PDF 引擎（go-fitz 封装）
-├── theme.go             # 主题配置
-├── icon.go              # 程序图标生成
-├── README.md            # 使用说明
+document.pdf  |  Page 5 / 120  |  Zoom: 125%  |  Size: 3.2 MB
 ```
 
-## 技术亮点
+### Keyboard Shortcuts
 
-1. **KISS 原则** - 代码简洁易维护，约 1000 行
-2. **模块化设计** - 界面/控制/引擎分离
-3. **自定义 Widget** - 实现滚轮翻页和双击事件
-4. **代码生成图标** - 无需外部图片资源
-5. **跨平台支持** - Windows/Linux/macOS 一次编译
+- `Left Arrow` / `PageUp`: Previous page
+- `Right Arrow` / `PageDown` / `Space`: Next page
+- `Home`: Jump to first page
+- `End`: Jump to last page
+- `Ctrl+W`: Close current tab (v1.2.2 New)
 
-## 依赖说明
+### Interface Operations
 
-- **Fyne**: GUI 框架（v2.4+）
-- **go-fitz**: MuPDF 的 Go 封装，用于 PDF 渲染（AGPL 许可）
+- **Open button**: Select PDF file to open
+- **Navigation buttons**: First page, Previous, Next, Last page
+- **Page number input**: Enter page number and press Enter to jump
+- **Zoom buttons**: `-` Zoom out, `100%` Reset, `+` Zoom in
 
-## 项目结构
+## Project Structure
 
 ```
-cmd/pdfviewer/
-├── main.go          # 程序入口
-├── pdf_engine.go    # PDF 引擎（go-fitz 封装）
-├── controller.go    # 控制器逻辑
-├── ui.go            # 用户界面
-├── theme.go         # 主题配置
-└── README.md        # 本文件
+/pdfviewer/
+├── main.go              # Program entry point
+├── ui.go                # User interface (menus, toolbar, event handlers)
+├── controller.go        # Controller logic (page management, zoom control)
+├── pdf_engine.go        # PDF engine (go-fitz wrapper)
+├── theme.go             # Theme configuration
+├── icon.go              # Program icon generation
+├── i18n.go              # Internationalization support
+├── README.md            # Chinese documentation
+├── README_EN.md         # English documentation (this file)
 ```
 
-## 常见问题
+## Technical Highlights
 
-### Q: 编译时报错 "gcc: command not found"
-A: 需要安装 GCC 编译器，并确保已添加到系统 PATH。
+1. **KISS Principle** - Simple and maintainable code, approximately 1000 lines
+2. **Modular Design** - Separation of UI/Controller/Engine
+3. **Custom Widgets** - Implements mouse wheel page flipping and double-click events
+4. **Code-generated Icons** - No external image resources needed
+5. **Cross-platform Support** - Build once for Windows/Linux/macOS
+6. **Multi-language Support** - English and Chinese UI (v1.3 New)
 
-### Q: 编译时报错链接器错误
-A: 确保使用 64 位版本的 GCC，并且版本与 Go 版本兼容。
+## Dependencies
 
-### Q: 打开 PDF 文件失败
-A: 确保 PDF 文件未损坏，且不是加密的 PDF。
+- **Fyne**: GUI framework (v2.4+)
+- **go-fitz**: Go wrapper for MuPDF, used for PDF rendering (AGPL license)
 
-### Q: 页面渲染缓慢
-A: 可以降低 DPI 设置（修改 controller.go 中的 baseDPI 值）。
+## Common Issues
 
+### Q: Build error "gcc: command not found"
+A: Need to install GCC compiler and ensure it's added to system PATH.
 
-## 许可证
+### Q: Linker error during build
+A: Ensure you're using 64-bit version of GCC and that the version is compatible with Go version.
+
+### Q: Failed to open PDF file
+A: Ensure PDF file is not corrupted and is not an encrypted PDF.
+
+### Q: Slow page rendering
+A: You can reduce DPI setting (modify baseDPI value in controller.go).
+
+## License
 
 - go-fitz: AGPL-3.0
 - Fyne: BSD-3-Clause
 
-## 联系方式
+## Contact
 
-如有问题，请查阅 Fyne 和 go-fitz 的官方文档：
+For issues, please refer to official documentation for Fyne and go-fitz:
 - Fyne: https://fyne.io/
 - go-fitz: https://github.com/gen2brain/go-fitz
