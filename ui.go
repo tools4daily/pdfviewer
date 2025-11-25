@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"net/url"
 	"os"
 	"strconv"
 	"strings"
@@ -688,6 +689,15 @@ func (ui *ViewerUI) Show() {
 	ui.window.ShowAndRun()
 }
 
+// mustParseURL 解析 URL，如果失败则 panic（用于常量 URL）
+func mustParseURL(urlStr string) *url.URL {
+	parsed, err := url.Parse(urlStr)
+	if err != nil {
+		panic(err)
+	}
+	return parsed
+}
+
 // onShowShortcuts 显示快捷键说明
 func (ui *ViewerUI) onShowShortcuts() {
 	dialog.ShowInformation(ui.tr.DialogShortcutsTitle, ui.tr.DialogShortcutsText, ui.window)
@@ -695,7 +705,50 @@ func (ui *ViewerUI) onShowShortcuts() {
 
 // onShowAbout 显示关于信息
 func (ui *ViewerUI) onShowAbout() {
-	dialog.ShowInformation(ui.tr.DialogAboutTitle, ui.tr.DialogAboutText, ui.window)
+	// 创建包含可点击链接的自定义对话框内容
+	var aboutContent fyne.CanvasObject
+
+	if ui.currentLang == LangChinese {
+		// 中文版本
+		aboutContent = container.NewVBox(
+			widget.NewLabel("PDF 阅读器 v1.2.4"),
+			widget.NewLabel(""),
+			widget.NewLabel("基于 Fyne + go-fitz 开发"),
+			widget.NewLabel("简洁、高效的 PDF 阅读工具"),
+			widget.NewLabel(""),
+			container.NewHBox(
+				widget.NewLabel("GitHub:"),
+				widget.NewHyperlink("https://github.com/tools4daily/pdfviewer",
+					mustParseURL("https://github.com/tools4daily/pdfviewer")),
+			),
+			widget.NewLabel(""),
+			widget.NewLabel("开源许可:"),
+			widget.NewLabel("- Fyne: BSD-3-Clause"),
+			widget.NewLabel("- go-fitz: AGPL-3.0"),
+		)
+	} else {
+		// 英文版本
+		aboutContent = container.NewVBox(
+			widget.NewLabel("PDF Reader v1.2.4"),
+			widget.NewLabel(""),
+			widget.NewLabel("Built with Fyne + go-fitz"),
+			widget.NewLabel("A simple and efficient PDF reading tool"),
+			widget.NewLabel(""),
+			container.NewHBox(
+				widget.NewLabel("GitHub:"),
+				widget.NewHyperlink("https://github.com/tools4daily/pdfviewer",
+					mustParseURL("https://github.com/tools4daily/pdfviewer")),
+			),
+			widget.NewLabel(""),
+			widget.NewLabel("Open Source Licenses:"),
+			widget.NewLabel("- Fyne: BSD-3-Clause"),
+			widget.NewLabel("- go-fitz: AGPL-3.0"),
+		)
+	}
+
+	// 创建自定义对话框
+	d := dialog.NewCustom(ui.tr.DialogAboutTitle, "OK", aboutContent, ui.window)
+	d.Show()
 }
 
 // switchLanguage 切换语言

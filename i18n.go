@@ -149,6 +149,8 @@ Other:
 Built with Fyne + go-fitz
 A simple and efficient PDF reading tool
 
+GitHub: https://github.com/tools4daily/pdfviewer
+
 Open Source Licenses:
 - Fyne: BSD-3-Clause
 - go-fitz: AGPL-3.0
@@ -229,6 +231,8 @@ func getChineseTranslations() *Translations {
 
 基于 Fyne + go-fitz 开发
 简洁、高效的 PDF 阅读工具
+
+GitHub: https://github.com/tools4daily/pdfviewer
 
 开源许可:
 - Fyne: BSD-3-Clause
